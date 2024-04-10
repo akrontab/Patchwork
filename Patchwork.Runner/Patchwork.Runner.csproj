@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Patchwork.Common\Patchwork.Common.csproj" />
+    <ProjectReference Include="..\Patchwork.Tasks\Patchwork.Tasks.csproj" />
+  </ItemGroup>
+
+</Project>
