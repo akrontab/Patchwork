@@ -15,5 +15,10 @@ namespace Patchwork.Runner
         public int TasksRunningCount { get; private set; }
         public int TasksCompletedCount { get; private set; }
 
+
+        public override string ToString()
+        {
+            return $"RunTime: {RunTime.TotalSeconds} seconds; TasksRunning: {TasksRunningCount}; TasksCompleted: {TasksCompletedCount}";
+        }
     }
 }

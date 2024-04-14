@@ -1,32 +1,35 @@
-﻿using Patchwork.Tasks;
+﻿using Patchwork.Console;
+using Patchwork.Tasks;
 
 namespace Patchwork
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            var cts = new CancellationTokenSource();
+	internal class Program
+	{
+		static void Main(string[] args)
+		{
+			var cts = new CancellationTokenSource();
 
-            var runner = new Runner.Runner();
+			var runner = new Runner.Runner();
 
-            Task.Factory.StartNew(() => runner.Run(cts));
+			runner.SubscribeToStats(new RunnerObserver());
 
-            while (true) 
-            {
-                var inputChar = Console.Read();
+			Task.Factory.StartNew(() => runner.Run(cts));
 
-                if (inputChar.Equals('a'))
-                {
-                    runner.AddTask(new DemoTask());
-                }
-                if (inputChar.Equals('c'))
-                {
-                    cts.Cancel();
-                    cts = new CancellationTokenSource();
-                    runner.RefreshCancellationTokenSource(cts);
-                }
-            }
-        }
-    }
+			while (true)
+			{
+				var keyPress = System.Console.ReadKey();
+
+				if (keyPress.KeyChar.Equals('a'))
+				{
+					runner.AddTask(new DemoTask());
+				}
+				if (keyPress.KeyChar.Equals('c'))
+				{
+					cts.Cancel();
+					cts = new CancellationTokenSource();
+					runner.RefreshCancellationTokenSource(cts);
+				}
+			}
+		}
+	}
 }

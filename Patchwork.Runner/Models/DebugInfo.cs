@@ -1,4 +1,4 @@
-﻿namespace Patchwork.Runner
+﻿namespace Patchwork.Runner.Models
 {
     internal class DebugInfo
     {

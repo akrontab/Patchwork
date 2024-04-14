@@ -1,4 +1,6 @@
-﻿namespace Patchwork.Runner.Observers
+﻿using Patchwork.Runner.Models;
+
+namespace Patchwork.Runner.Observers
 {
     internal class DebugObserver : IObserver<DebugInfo>
 	{
