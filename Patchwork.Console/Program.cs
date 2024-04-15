@@ -13,15 +13,15 @@ namespace Patchwork
 
 			runner.SubscribeToStats(new RunnerObserver());
 
-			Task.Factory.StartNew(() => runner.Run(cts));
+			Task.Factory.StartNew(() => runner.RunAsync(cts));
 
 			while (true)
 			{
-				var keyPress = System.Console.ReadKey();
+				var keyPress = System.Console.ReadKey(true);
 
 				if (keyPress.KeyChar.Equals('a'))
 				{
-					runner.AddTask(new DemoTask());
+					runner.AddTask(new Dictionary<string, string>(), new DemoTask());
 				}
 				if (keyPress.KeyChar.Equals('c'))
 				{

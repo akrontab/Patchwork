@@ -2,7 +2,7 @@
 {
     public class DemoTask : BaseTask<TaskStats>
     {
-        public override Task Run(CancellationToken cancellationToken)
+        public override Task RunAsync(Dictionary<string,string> parameters, CancellationToken cancellationToken)
         {
             return Task.Factory.StartNew(() =>
             {

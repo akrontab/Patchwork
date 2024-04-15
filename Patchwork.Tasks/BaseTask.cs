@@ -6,7 +6,7 @@ namespace Patchwork.Tasks
     {
         private List<IObserver<T>> _observers = new List<IObserver<T>>();
 
-		public abstract Task Run(CancellationToken cancellationToken);
+		public abstract Task RunAsync(Dictionary<string,string> parameters, CancellationToken cancellationToken);
 
         public IDisposable Subscribe(IObserver<T> observer)
         {

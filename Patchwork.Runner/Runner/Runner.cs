@@ -6,7 +6,7 @@ using Patchwork.Tasks;
 
 namespace Patchwork.Runner
 {
-	public class Runner
+    public class Runner : IDisposable
 	{
 		private List<IObserver<RunnerStats>> _statsObservers = new List<IObserver<RunnerStats>>();
 		private List<Task> _tasks = new List<Task>();
@@ -27,16 +27,14 @@ namespace Patchwork.Runner
 				RunnerStatsPublishInterval = 1000,
 				TaskCleanUpInterval	= 2000
 			};
-		}
+        }
 
-		public void Run(CancellationTokenSource cts)
+        public Task RunAsync(CancellationTokenSource cts)
 		{
-			// Time used to report run statics
-			_runTimer.Start();
+            _runTimer.Start();
 
-			_cts = cts;
+            _cts = cts;
 
-			// TODO - Add Options Class to control task cleanup time and Runner Stats publishing interval
 			void TimerCallback(object? state)
 			{
 				_tasksCompleted += _tasks.RemoveAll(t => t.IsCompleted);
@@ -51,13 +49,17 @@ namespace Patchwork.Runner
 			}
 			var statsPublishTimer = new Timer(StatsPublishCallback, null, 0, _runnerOptions.RunnerStatsPublishInterval);
 
-			while (true && !_cts.IsCancellationRequested) { }
-		}
-		public void AddTask(BaseTask<TaskStats> taskToAdd)
+			return Task.Factory.StartNew(() =>
+			{
+				while (true && !_cts.IsCancellationRequested) { }
+			});
+        }
+		public void AddTask(Dictionary<string, string> taskParameters, BaseTask<TaskStats> taskToAdd)
 		{
+			// TODO - Find a better way of adding a generic observer 
 			taskToAdd.Subscribe(new ConsoleObserver());
 
-			_tasks.Add(taskToAdd.Run(_cts.Token));
+			_tasks.Add(taskToAdd.RunAsync(taskParameters, _cts.Token));
 		}
 
 		public IDisposable SubscribeToStats(IObserver<RunnerStats> observer)
@@ -82,5 +84,13 @@ namespace Patchwork.Runner
 		{
 			_cts = cts;
 		}
-	}
+
+        public void Dispose()
+        {
+			_runTimer.Stop();
+
+			_tasks.Clear();
+			_statsObservers.Clear();
+        }
+    }
 }
