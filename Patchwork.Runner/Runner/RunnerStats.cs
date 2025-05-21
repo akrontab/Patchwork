@@ -3,7 +3,7 @@
 namespace Patchwork.Runner
 {
     public class RunnerStats
-	{
+    {
         public RunnerStats(TimeSpan runTime, int taskRunningCount, int taskCompleteCount)
         {
             RunTime = runTime;
@@ -11,14 +11,10 @@ namespace Patchwork.Runner
             TasksCompletedCount = taskCompleteCount;
         }
 
-        public TimeSpan RunTime { get; private set; }
-        public int TasksRunningCount { get; private set; }
-        public int TasksCompletedCount { get; private set; }
+        public TimeSpan RunTime { get; }
+        public int TasksRunningCount { get; }
+        public int TasksCompletedCount { get; }
 
-
-        public override string ToString()
-        {
-            return $"RunTime: {RunTime.TotalSeconds} seconds; TasksRunning: {TasksRunningCount}; TasksCompleted: {TasksCompletedCount}";
-        }
+        public override string ToString() => $"RunTime: {RunTime.TotalSeconds} seconds; TasksRunning: {TasksRunningCount}; TasksCompleted: {TasksCompletedCount}";
     }
 }

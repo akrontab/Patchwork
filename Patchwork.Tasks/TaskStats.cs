@@ -2,6 +2,6 @@
 {
     public class TaskStats
     {
-        public List<string> Messages { get; } = new List<string>();
+        public List<string> Messages { get; } = new();
     }
 }

@@ -4,9 +4,9 @@ namespace Patchwork.Tasks
 {
     public abstract class BaseTask<T> : IObservable<T>
     {
-        private List<IObserver<T>> _observers = new List<IObserver<T>>();
+        private readonly List<IObserver<T>> _observers = new();
 
-		public abstract Task RunAsync(Dictionary<string,string> parameters, CancellationToken cancellationToken);
+        public abstract Task RunAsync(Dictionary<string, string> parameters, CancellationToken cancellationToken);
 
         public IDisposable Subscribe(IObserver<T> observer)
         {
