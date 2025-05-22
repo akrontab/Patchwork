@@ -55,9 +55,13 @@ namespace Patchwork.Runner
 
         public void AddTask(Dictionary<string, string> taskParameters, BaseTask<TaskStats> taskToAdd)
         {
-            // TODO - Find a better way of adding a generic observer
-            taskToAdd.Subscribe(new ConsoleObserver());
-            _tasks.Add(taskToAdd.RunAsync(taskParameters, _cts.Token));
+            AddTask(taskParameters, taskToAdd, new ConsoleObserver());
+        }
+
+        public void AddTask(Dictionary<string, string> taskParameters, BaseTask<TaskStats> taskToAdd, IObserver<TaskStats> observer)
+        {
+            taskToAdd.Subscribe(observer);
+            _tasks.Add(taskToAdd.RunAsync(new Dictionary<string, string>(), _cts.Token));
         }
 
         public IDisposable SubscribeToStats(IObserver<RunnerStats> observer)

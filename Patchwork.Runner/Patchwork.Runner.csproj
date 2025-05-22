@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Patchwork.Tasks\Patchwork.Tasks.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Host\" />
-  </ItemGroup>
-
 </Project>
