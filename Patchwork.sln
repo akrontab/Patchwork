@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Patchwork.Tasks", "Patchwor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patchwork.Common", "Patchwork.Common\Patchwork.Common.csproj", "{BB3BA025-D7DE-40E0-9687-B967D3982412}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hosts", "hosts", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{BE6B999B-B86D-412B-A5F1-55E8829EDAEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36BB7D39-BBC3-45C9-B500-817EFCF5020D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{47A38AEC-653D-4CC3-82C3-4FBA006DBBCD} = {BE6B999B-B86D-412B-A5F1-55E8829EDAEC}
+		{BC5CB9BA-5B76-459F-968E-AB4CD1BC81B0} = {BE6B999B-B86D-412B-A5F1-55E8829EDAEC}
+		{BB3BA025-D7DE-40E0-9687-B967D3982412} = {BE6B999B-B86D-412B-A5F1-55E8829EDAEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9200DFF-A78B-416C-AB4F-FFCD5D83165B}
