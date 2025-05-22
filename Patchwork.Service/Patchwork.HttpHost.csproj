@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Patchwork.Service-d820d1c0-a436-46d0-a3da-2a1cc9f3b37e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Patchwork.Runner\Patchwork.Runner.csproj" />
+    <ProjectReference Include="..\Patchwork.Tasks\Patchwork.Tasks.csproj" />
+  </ItemGroup>
+
+</Project>
